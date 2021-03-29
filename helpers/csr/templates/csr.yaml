@@ -1,0 +1,11 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: {{ .Values.username }} # SHOULD NOT BE EMPTY
+spec:
+  groups:
+  - system:authenticated
+  request: {{ .Files.Get .Values.csr_path | b64enc }} # SHOULD NOT BE EMPTY
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
