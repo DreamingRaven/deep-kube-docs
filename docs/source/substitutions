@@ -8,3 +8,4 @@
 .. |bash shell| replace:: Bash shell
 
 .. |username| replace:: ``username``
+.. |group| replace:: ``group``
