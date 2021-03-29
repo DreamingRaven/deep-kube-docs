@@ -3,4 +3,4 @@
 # Declare variables to be passed into your templates.
 
 username: # put your name here
-csr_path: secrets/my.csr # file path to certificate signing request
+csr: secrets/my.csr # file path to certificate signing request

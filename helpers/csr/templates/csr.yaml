@@ -5,7 +5,7 @@ metadata:
 spec:
   groups:
   - system:authenticated
-  request: {{ .Files.Get .Values.csr_path | b64enc }} # SHOULD NOT BE EMPTY
+  request: {{ .Files.Get .Values.csr | b64enc }} # SHOULD NOT BE EMPTY
   signerName: kubernetes.io/kube-apiserver-client
   usages:
   - client auth
