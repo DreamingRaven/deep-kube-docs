@@ -1,5 +1,8 @@
 .. include:: substitutions
 
+.. _csr-gen: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs
+.. |csr-gen| replace:: certificate signing request generation
+
 Users
 #####
 
@@ -17,21 +20,21 @@ To have a certificate represent a user there are 3 requirements of the certifica
 Generate the Users certificate
 ++++++++++++++++++++++++++++++
 
-:|bash shell|_ example; Generating private key\::
+:|bash shell|_ example; Generating private key:
 
-  .. parsed-literal::
+.. parsed-literal::
 
-      openssl genrsa -out |username|.key 2048
+    openssl genrsa -out |username|.key 2048
 
 
 Generate a Certificate Signing Request
 ++++++++++++++++++++++++++++++++++++++
 
-|bash shell|_ example; |csr-gen|_\:
+:|bash shell|_ example; |csr-gen|_:
 
-  .. parsed-literal::
+.. parsed-literal::
 
-      openssl genrsa -out |username|.key 2048
+    openssl genrsa -out |username|.key 2048
 
 See also:
 

@@ -1,6 +1,3 @@
-.. _csr-gen: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs
-.. |csr-gen| replace:: certificate signing request generation
-
 .. _docker: https://www.docker.com/
 .. |docker| replace:: Docker
 
