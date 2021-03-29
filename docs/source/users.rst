@@ -81,6 +81,31 @@ OR
 
   Make sure you replace |username| and |group| with the correct/ desired |username| and |group| specified by your cluster administrator. (the last |username| and |group| are not highlighted as quoted)
 
+.. note::
+  It is advisable to check your now created CSR which should if you followed the above be called |username|.csr.
+  You can check your CSR by:
+
+  :|bash shell|_ example; inspect CSR:
+
+  .. parsed-literal::
+
+      openssl req --noout -text -in |username|.csr
+
+  You should see something akin to the following towards the top:
+
+  .. parsed-literal::
+
+      Certificate Request:
+        Data:
+            Version: 1 (0x0)
+            Subject: CN = |username|, O = |group|
+            Subject Public Key Info:
+                Public Key Algorithm: rsaEncryption
+                    RSA Public-Key: (2048 bit)
+                    Modulus:
+
+  If these are not correct, create a new certificate now, otherwise you will be waiting for acceptance to only get rejected because they are incorrect later.
+
 See also:
 
 - |csr-gen|_
@@ -92,12 +117,25 @@ See also:
 Use CSR in Kubernetes CSR.yaml to Request Signing by Administrator
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Now that we have a private-key, and a certificate signing request (.csr) file, we can now ask the kubernetes api to consider us for authentication, where an admin can accept/ decline us or a pre-defined rule can accept/ decline us.
+
+To do so we need to define a short YAML file as seen below:
+
 .. literalinclude:: ../../examples/username-csr.yaml
    :language: yaml
    :linenos:
 
-:creation of database example:
+We need to substitute our name or more specifically the name we used earlier in the CN field. If you have forgotten what it was or need to double check please refer to |auth_csr| which tells you how to inspect the certificate as well as generate it. We also need to insert our certificate in one line and Base64 encoded.
+
+.. note::
+   our CSR should be embedded in the above file next to request. This CSR should be embedded as Base64. If you are on linux you can use the following to get the properly formatted base64 string to insert:
 
   .. parsed-literal::
 
-      mongod --config ./examples/configs/basic_mongo_config.yaml
+      cat |username|.csr | base64 | tr -d "\n"
+
+Now that we have a CSR yaml file lets call it |csr|.yaml for consistency. We can submit this to kubernetes and await approval.
+We can do this in two ways:
+
+- Ask our administrator (or someone else with permissions) to submit the file to the api-server for approval
+- Submit the file ourselves for approval to cut out the middleman
