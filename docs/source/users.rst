@@ -114,8 +114,8 @@ See also:
 
 .. _auth_kube_csr:
 
-Use CSR in Kubernetes CSR.yaml to Request Signing by Administrator
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Use CSR in Kubernetes yaml File to Request Signing by Administrator
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Now that we have a private-key, and a certificate signing request (.csr) file, we can now ask the kubernetes api to consider us for authentication, where an admin can accept/ decline us or a pre-defined rule can accept/ decline us.
 
@@ -188,3 +188,22 @@ Please do mention the CSR submission to someone who can approve it, as an hour a
 
 Use Approved CSR to Authenticate to Kube-Api
 ++++++++++++++++++++++++++++++++++++++++++++
+
+We now should have both a private key (\ |username|\ .key) from |auth_private_key|, and a signed certificate (\ |username|\ .crt) from kubernetes in |auth_kube_csr|\ .
+The last thing we need is the public certificate-authority certificate so that our client when connecting to the kube-api can also verify that it is also signed by the certificate-authority, to prevent redirecting attacks of some sort. You will either be given the certificate-authority certificate (usually called ca.cert) by your admin, if not you should request it as you will need it to communicate to the kube-api server to issue your commands.
+
+Given these 3 things along with we know our |username| and more than likely know the ip address where the kube-api is running we can finally configure out kubectl config file.
+
+I have provided another |helm| template so you can generate your kubectl config with it or you can replicate a similar example to the documentation / use kubectl commands to generate the config. This template is at https://github.com/DreamingRaven/deep-kube-docs/tree/master/helpers/kubectl
+
+simply run as before:
+
+:|bash shell|_ example; generate a kubectl config:
+
+.. parsed-literal::
+
+    helm template |folder-helm-csr|\kubectl --set username=\ |username|\
+
+where:
+
+- |folder-helm-csr| is the path to the kubectl folder linked to above
