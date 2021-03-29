@@ -1,0 +1,13 @@
+.. _csr-gen: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs
+.. |csr-gen| replace:: certificate signing request generation
+
+.. _docker: https://www.docker.com/
+.. |docker| replace:: Docker
+
+.. _docker-compose: https://docs.docker.com/compose/
+.. |docker-compose| replace:: Docker-Compose
+
+.. _bash shell: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
+.. |bash shell| replace:: Bash shell
+
+.. |username| replace:: ``username``

@@ -7,4 +7,4 @@ Please read the docs:
 
 .. image:: https://readthedocs.org/projects/deep-kube-docs/badge/?version=latest
   :target: https://deep-kube-docs.readthedocs.io/en/latest/?badge=latest
-  :alt: Documentation Status,
+  :alt: Visual Documentation Status and Link,
