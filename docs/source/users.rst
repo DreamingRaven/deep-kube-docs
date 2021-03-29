@@ -159,4 +159,32 @@ We can do this in two ways:
 - Ask our administrator (or someone else with permissions) to submit the file to the api-server for approval
 - Submit the file ourselves for approval to cut out the middleman, if we have credentials to do so, like some generic CSR submitting user (Ask your admin if there is one).
 
-Please do mention the CSR to someone who can approve it, as an hour after submission it will automatically be removed from the kube-api, effectively declined.
+Please do mention the CSR submission to someone who can approve it, as an hour after submission it will automatically be removed from the kube-api-server by default, effectively being declined.
+
+.. note::
+  An authorised kubernetes administrator will then likeley run:
+
+  :|bash shell|_ example; get/ check csrs':
+
+  .. parsed-literal::
+
+      kubectl get csr -o wide
+
+  :|bash shell|_ example; approve or decline the csr:
+
+  .. parsed-literal::
+
+      kubectl certificate approve|decline |username|
+
+  :|bash shell|_ example; get CSR if approved, and give to user without perms:
+
+  .. parsed-literal::
+
+      kubectl get csr |username| -o jsonpath='{.status.certificate}'| base64 -d > |username|.crt
+
+.. |auth_kube_config| replace:: :ref:`auth_kube_config`
+
+.. _auth_kube_config:
+
+Use Approved CSR to Authenticate to Kube-Api
+++++++++++++++++++++++++++++++++++++++++++++
