@@ -126,6 +126,24 @@ To do so we need to define a short YAML file as seen below:
    :linenos:
 
 We need to substitute our name or more specifically the name we used earlier in the CN field. If you have forgotten what it was or need to double check please refer to |auth_csr| which tells you how to inspect the certificate as well as generate it. We also need to insert our certificate in one line and Base64 encoded.
+If encoding the certificate gives you any problems try our |helm|_ helper template (you will need to have |helm|_ installed) `Located here <https://github.com/DreamingRaven/deep-kube-docs/tree/master/helpers/csr>`_.
+Simply download the files pointed to here and run:
+
+.. |folder-helm-csr| replace:: ``folder/path/to/``
+.. |file-path-csr| replace:: ``secrets/file-name``
+
+:|bash shell|_ example; |helm| CSR template generator:
+
+.. parsed-literal::
+
+    helm template |folder-helm-csr|\ csr --set username=\ |username|\ ,csr=\ |file-path-csr|\ .csr
+
+This will paste the correct contents to your terminal which you can paste into a file, should it be correct. There should be no blank entries in particular where there are comments, there should be text between the comment and the preceeding colon of the same line I.E ``request: jhaiusdf912iudifgakdujh27dhf # comment`` NOT ``request: # comment``. check both request and name. If one or the other is blank that means you have set the names or paths wrong.
+
+where:
+
+- |folder-helm-csr| is the path to the `folder` containing the Chart.yaml file of the helm chart.
+- |file-path-csr| is the relative path from the above `folder` to find your csr file created in |auth_csr|.
 
 .. note::
    our CSR should be embedded in the above file next to request. This CSR should be embedded as Base64. If you are on linux you can use the following to get the properly formatted base64 string to insert:
@@ -134,8 +152,11 @@ We need to substitute our name or more specifically the name we used earlier in 
 
       cat |username|.csr | base64 | tr -d "\n"
 
+
 Now that we have a CSR yaml file lets call it |csr|.yaml for consistency. We can submit this to kubernetes and await approval.
 We can do this in two ways:
 
 - Ask our administrator (or someone else with permissions) to submit the file to the api-server for approval
-- Submit the file ourselves for approval to cut out the middleman
+- Submit the file ourselves for approval to cut out the middleman, if we have credentials to do so, like some generic CSR submitting user (Ask your admin if there is one).
+
+Please do mention the CSR to someone who can approve it, as an hour after submission it will automatically be removed from the kube-api, effectively declined.
