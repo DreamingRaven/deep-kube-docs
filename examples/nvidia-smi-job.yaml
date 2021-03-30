@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: smi
+spec:
+  template:
+    spec:
+      containers:
+      - name: smi
+        image: docker.io/nvidia/cuda:11.0-base
+        command: ['nvidia-smi']
+      restartPolicy: OnFailure
