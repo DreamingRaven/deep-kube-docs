@@ -1,18 +1,23 @@
 apiVersion: v1
-- cluster:
-    certificate-authority-data: <>
-    server: https://192.168.3.102:6443
-  name: kubernetes
-contexts:
-- context:
-    cluster: kubernetes
-    user: kubernetes-admin
-  name: kubernetes-admin@kubernetes
-current-context: kubernetes-admin@kubernetes
 kind: Config
 preferences: {}
+# the current context we are using with kubectl to connect to
+current-context: {{ .Values.username }}@{{ .Values.cluster_name }}
+# cluster details
+clusters:
+- cluster:
+    certificate-authority-data: {{ .Files.Get .Values.ca_cert | b64enc }}
+    server: {{ .Values.kube_api_address }}
+  name: {{ .Values.cluster_name }}
+# relate clusters to users
+contexts:
+- context:
+    cluster: {{ .Values.cluster_name }}
+    user: {{ .Values.username }}
+  name: {{ .Values.username }}@{{ .Values.cluster_name }}
+# users that we own
 users:
-- name: kubernetes-admin
+- name: {{ .Values.username }}
   user:
-    client-certificate-data: <>
-    client-key-data: <>
+    client-certificate-data: {{ .Files.Get .Values.user_cert | b64enc }}
+    client-key-data: {{ .Files.Get .Values.user_key | b64enc }}

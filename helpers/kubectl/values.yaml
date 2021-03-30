@@ -1,3 +1,13 @@
 # Default values for kubectl.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+# MANDATORY REPLACEMENTS THESE MUST EXIST OR BE CHANGED
+username: YOURUSERNAME # whatever username is associated to cluster and in cert
+ca_cert: certificates/ca.cert # relative path to ca cert (from Chart.yaml)
+user_cert: certificates/username.cert # as above, for users signed cert
+user_key: certificates/username.key # as above, for users private key
+kube_api_address: https://192.168.3.102:6443 # the ip (of node) and port of the kube api server where it is listening on (defaults to port 6443 use ``ps -aux | grep "kube-api"`` to find it if its different)
+
+# OPTIONAL NICETIES
+cluster_name: kubernetes
