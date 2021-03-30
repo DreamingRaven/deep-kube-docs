@@ -1,3 +1,5 @@
+.. include:: substitutions
+
 NVIDIA-GPU
 ##########
 
@@ -36,11 +38,15 @@ Test Pods
 
 Test pod for cuda functionality
 
+:|manifest|_ example:
+
 .. literalinclude:: ../../examples/cuda-add.yaml
    :language: yaml
    :linenos:
 
 Test job for nvidia-smi
+
+:|manifest|_ example:
 
 .. literalinclude:: ../../examples/nvidia-smi-job.yaml
    :language: yaml

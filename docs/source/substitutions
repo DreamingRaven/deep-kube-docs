@@ -7,6 +7,9 @@
 .. _bash shell: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 .. |bash shell| replace:: Bash shell
 
+.. _manifest: https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects
+.. |manifest| replace:: Manifest
+
 .. _helm: https://helm.sh/
 .. |helm| replace:: Helm
 
