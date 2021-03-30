@@ -210,3 +210,7 @@ where:
 - |username| is the username you used throught this process
 - ``192.168.1.102`` is the accessible address of the machine hosting the kube-api-server
 - ``6443`` is the port the kube-api-server is listening on, by default: 6443
+
+See also:
+
+- `kubectl config files <https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/>`_
