@@ -202,8 +202,11 @@ simply run as before:
 
 .. parsed-literal::
 
-    helm template |folder-helm-csr|\kubectl --set username=\ |username|\
+    helm template |folder-helm-csr|\kubectl --set username=\ |username|\ ,ca_cert=certificates/\ ``ca``\ .cert,user_cert=certificates/\ |username|\ .cert,user_key=certificates/\ |username|\ .key,kube_api_address=https://\ ``192.168.1.102``\ :\ ``6443``
 
 where:
 
-- |folder-helm-csr| is the path to the kubectl folder linked to above
+- |folder-helm-csr| is the path to the parent folder that contains Chart.yaml exists on your system after you downloaded this helm chart from https://github.com/DreamingRaven/deep-kube-docs/tree/master/helpers/kubectl
+- |username| is the username you used throught this process
+- ``192.168.1.102`` is the accessible address of the machine hosting the kube-api-server
+- ``6443`` is the port the kube-api-server is listening on, by default: 6443
