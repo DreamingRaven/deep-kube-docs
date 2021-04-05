@@ -13,6 +13,7 @@ clusters:
 contexts:
 - context:
     cluster: {{ .Values.cluster_name }}
+    namespace: {{ .Values.username }}
     user: {{ .Values.username }}
   name: {{ .Values.username }}@{{ .Values.cluster_name }}
 # users that we own
