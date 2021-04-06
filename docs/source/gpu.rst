@@ -6,6 +6,11 @@ NVIDIA-GPU
 Cluster Configuration
 +++++++++++++++++++++
 
+.. note::
+
+  Clearly since this is cluster configuration this only applies to administrators. Normal users will have no need to follow this cluster configuration step.
+
+
 To enable nvidia-container-toolking previously nvidia-docker, by editing /etc/docker/daemon.json since kubernetes does not support the docker --gpu option:
 
 https://docs.nvidia.com/datacenter/cloud-native/kubernetes/dcgme2e.html#install-nvidia-container-toolkit-previously-nvidia-docker2
