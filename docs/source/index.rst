@@ -12,6 +12,7 @@ Deep-Kube-Docs
   :numbered:
 
   users
+  linuxvpn
   usage
   gpu
 
